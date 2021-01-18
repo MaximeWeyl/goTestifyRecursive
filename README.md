@@ -2,6 +2,11 @@
 
 Extending https://github.com/stretchr/testify.git with recursive capabilities.
 
+Tested for go 1.15.
+
+[![Build Status](https://travis-ci.org/MaximeWeyl/goTestifyRecursive.svg?branch=master)](https://travis-ci.org/MaximeWeyl/goTestifyRecursive)
+[![codecov](https://codecov.io/gh/MaximeWeyl/goTestifyRecursive/branch/master/graph/badge.svg?token=UFOL6XICXV)](https://codecov.io/gh/MaximeWeyl/goTestifyRecursive)
+
 ## Why
 
 ### The problem
