@@ -1,4 +1,4 @@
-package checkStruct
+package testifyRecursive
 
 import (
 	"github.com/MaximeWeyl/goTestifyRecursive/behaviours"
