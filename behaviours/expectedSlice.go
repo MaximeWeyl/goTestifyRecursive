@@ -6,8 +6,10 @@ import (
 	"reflect"
 )
 
+//ExpectedSlice Assert/Require a slice. The values are the behaviours we expect for each element
 type ExpectedSlice []ExpectedStruct
 
+//CheckField Assert that a value slice matches the expected slice
 func (e ExpectedSlice) CheckField(t assert.TestingT, actualValueInterface interface{}, parentFieldName string) bool {
 	actualValue := reflect.ValueOf(actualValueInterface)
 

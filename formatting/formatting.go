@@ -2,6 +2,7 @@ package formatting
 
 import "strings"
 
+//FormatFieldName Formats the field name. Use this to return nice errors in your custom behaviours
 func FormatFieldName(parentString string, suffixes ...string) string {
 	out := parentString
 	suffixesString := strings.Join(suffixes, ".")

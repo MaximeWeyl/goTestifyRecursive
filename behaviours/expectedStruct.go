@@ -7,8 +7,10 @@ import (
 	"reflect"
 )
 
+//ExpectedStruct Assert/Require a struct. The values are the behaviours we expect for each element
 type ExpectedStruct map[string]interface{}
 
+//CheckField Assert that a value struct matches the expected slice
 func (e ExpectedStruct) CheckField(t assert.TestingT, actualValueInterface interface{}, parentFieldName string) bool {
 	actualType := reflect.TypeOf(actualValueInterface)
 	actualValue := reflect.ValueOf(actualValueInterface)
