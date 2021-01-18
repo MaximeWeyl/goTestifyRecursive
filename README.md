@@ -13,7 +13,7 @@ Tested for go 1.15.
 
 ### The problem
 
-If you've into testing, you surely wrote a lot of such code :
+If you've been into testing, you surely wrote a lot of such code :
 
 ```go
 package main
