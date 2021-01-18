@@ -6,6 +6,8 @@ Tested for go 1.15.
 
 [![Build Status](https://travis-ci.org/MaximeWeyl/goTestifyRecursive.svg?branch=master)](https://travis-ci.org/MaximeWeyl/goTestifyRecursive)
 [![codecov](https://codecov.io/gh/MaximeWeyl/goTestifyRecursive/branch/master/graph/badge.svg?token=UFOL6XICXV)](https://codecov.io/gh/MaximeWeyl/goTestifyRecursive)
+[![](https://godoc.org/github.com/MaximeWeyl/goTestifyRecursive?status.svg)](http://godoc.org/github.com/MaximeWeyl/goTestifyRecursive)
+
 
 ## Why
 
