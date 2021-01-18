@@ -1,4 +1,4 @@
-# goRecursiveAssert
+# goTestifyRecursive
 
 Extending https://github.com/stretchr/testify.git with recursive capabilities.
 
