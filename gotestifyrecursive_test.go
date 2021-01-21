@@ -2,6 +2,7 @@ package testifyRecursive
 
 import (
 	bh "github.com/MaximeWeyl/goTestifyRecursive/behaviours"
+	"github.com/stretchr/testify/assert"
 	"testing"
 )
 
@@ -913,4 +914,66 @@ func TestRequire(t *testing.T) {
 		tInner.AssertAllErrorsWereAsserted(t)
 	}
 
+}
+
+func TestFromAssertFunctionValue(t *testing.T) {
+
+	b := struct {
+		A int
+	}{
+		A: 17,
+	}
+
+	{
+		tInner := &MockedT{}
+
+		AssertRecursive(tInner, b, bh.ExpectedStruct{
+			"A": bh.Func(assert.Equal, 12, bh.X, "%s : expected %d but got %d", bh.F, 12, bh.X),
+		})
+		// Test should have pass
+		tInner.AssertFailed(t, false)
+		tInner.AssertRemainingErrorMessageAndDiscardIt(t, "{A} : expected 12 but got 17")
+		tInner.AssertAllErrorsWereAsserted(t)
+	}
+
+	{
+		tInner := &MockedT{}
+
+		RequireRecursive(tInner, b, bh.ExpectedStruct{
+			"A": bh.Func(assert.Equal, 12, bh.X, "%s : expected %d but got %d", bh.F, 12, bh.X),
+		})
+		// Test should have pass
+		tInner.AssertFailed(t, true)
+		tInner.AssertRemainingErrorMessageAndDiscardIt(t, "{A} : expected 12 but got 17")
+		tInner.AssertAllErrorsWereAsserted(t)
+	}
+
+	{
+		tInner := &MockedT{}
+
+		AssertRecursive(tInner, b, bh.ExpectedStruct{
+			"A": bh.Func(assert.Equal, 17, bh.X, "%s : expected %d but got %d", bh.F, 12, bh.X),
+		})
+		// Test should have pass
+		tInner.AssertPassed(t)
+	}
+
+	{
+		assert.PanicsWithValue(t, "Must be called with a function", func() {
+			_ = bh.Func(12, 17, bh.X, "%s : expected %d but got %d", bh.F, 12, bh.X)
+		})
+
+		assert.PanicsWithValue(t, "Must be called with a function with one return value. It had 0", func() {
+			_ = bh.Func(func(*testing.T) { return }, 17, bh.X, "%s : expected %d but got %d", bh.F, 12, bh.X)
+		})
+
+		assert.PanicsWithValue(t, "Return value should be bool, but was int", func() {
+			_ = bh.Func(func(*testing.T) int { return 3 }, 17, bh.X, "%s : expected %d but got %d", bh.F, 12, bh.X)
+		})
+
+		assert.PanicsWithValue(t, "Return value should have at least 1 parameter, but had 0", func() {
+			_ = bh.Func(func() bool { return true }, 17, bh.X, "%s : expected %d but got %d", bh.F, 12, bh.X)
+		})
+
+	}
 }

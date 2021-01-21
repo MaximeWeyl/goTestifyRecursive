@@ -226,6 +226,50 @@ func (n NotEmptyField) CheckField(t assert.TestingT, actualValueInterface interf
 
 ```
 
+## Using any testify function as behaviour
+
+You can use any function from testify (or other) package.
+This function must begin with a t parameter and return a bool
+parameter (like any functions in the testify's assert package)
+
+For this, you need to use the Func behaviour factory,
+which takes the function (for instance, assert.Equal) 
+as first parameter.
+
+Any following parameter will be passed to the function.
+The first "t" parameter should never be passed, the one from
+AssertRecursive or RequireRecursive will be used.
+
+In order to pass the currently tested value, use the 
+custom parameter X. In order to pass the name of the 
+current field, use the custom parameter F.
+
+
+```go
+package main
+
+import (
+	rec "github.com/MaximeWeyl/goTestifyRecursive"
+	bh "github.com/MaximeWeyl/goTestifyRecursive/behaviours"
+	"github.com/stretchr/testify/assert"
+	"testing"
+)
+
+func TestName(t *testing.T) {
+	a := struct {
+		A int
+	}{
+		A: 12,
+	}
+
+	rec.AssertRecursive(t, a, bh.ExpectedStruct{
+		"A": bh.Func(assert.Equal, 12, bh.X, "%s : expected %d but got %d", bh.F, 12, bh.X),
+	})
+}
+
+```
+
+
 ## Require instead of Assert
 
 Like in testify, you can stop your test immediately if the assertion fails.
