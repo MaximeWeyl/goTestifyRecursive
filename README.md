@@ -1,12 +1,26 @@
 # goTestifyRecursive
 
+
 Extending https://github.com/stretchr/testify.git with recursive capabilities.
 
-Tested for go 1.15.
+Tested for go 1.15, 1.14, 1.13.
 
 [![Build Status](https://travis-ci.org/MaximeWeyl/goTestifyRecursive.svg?branch=master)](https://travis-ci.org/MaximeWeyl/goTestifyRecursive)
 [![codecov](https://codecov.io/gh/MaximeWeyl/goTestifyRecursive/branch/master/graph/badge.svg?token=UFOL6XICXV)](https://codecov.io/gh/MaximeWeyl/goTestifyRecursive)
 [![PkgGoDev](https://pkg.go.dev/badge/github.com/MaximeWeyl/goTestifyRecursive)](https://pkg.go.dev/github.com/MaximeWeyl/goTestifyRecursive)
+
+
+- [goTestifyRecursive](#gotestifyrecursive)
+  * [Why](#why)
+    + [The problem](#the-problem)
+    + [Solution provided](#solution-provided)
+  * [But you said "recursive"](#but-you-said-recursive)
+  * [But I do not want to check for this new field](#but-i-do-not-want-to-check-for-this-new-field)
+  * [Behaviours](#behaviours)
+  * [Writing your own behaviours](#writing-your-own-behaviours)
+  * [Using any testify function as behaviour](#using-any-testify-function-as-behaviour)
+  * [Require instead of Assert](#require-instead-of-assert)
+  * [Contributing](#contributing)
 
 ## Why
 
